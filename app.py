@@ -20,7 +20,7 @@ class SimpleProblem(SearchProblem):
         # Define heuristic for A*
         pass
 
-@app.route('/solve', methods=['POST'])
+@app.route('/solve', methods=['POST', 'GET'])
 def solve_problem():
     data = request.json
     problem_instance = SimpleProblem(initial_state=data['initial_state'])
@@ -29,6 +29,7 @@ def solve_problem():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
 from flask import Flask, jsonify, request
 from simpleai.search import SearchProblem, astar
 
@@ -67,4 +68,4 @@ def solve_problem():
     return jsonify({"result": result})
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, port=5000)
